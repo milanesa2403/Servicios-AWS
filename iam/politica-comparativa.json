@@ -1,0 +1,78 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ServiciosRegionalesSoloEnRegionesPermitidas",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:*",
+        "elasticloadbalancing:*",
+        "ssm:GetParameter",
+        "ssm:GetParameters"
+      ],
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:RequestedRegion": ["us-east-2", "sa-east-1"]
+        }
+      }
+    },
+    {
+      "Sid": "ServiciosGlobalesCloudFrontWafAccelerator",
+      "Effect": "Allow",
+      "Action": [
+        "cloudfront:*",
+        "wafv2:*",
+        "globalaccelerator:*"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "BucketDelFrontend",
+      "Effect": "Allow",
+      "Action": "s3:*",
+      "Resource": [
+        "arn:aws:s3:::rm-a-frontend-*",
+        "arn:aws:s3:::rm-a-frontend-*/*"
+      ]
+    },
+    {
+      "Sid": "RolDeLasEC2",
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreateRole",
+        "iam:DeleteRole",
+        "iam:GetRole",
+        "iam:TagRole",
+        "iam:ListRolePolicies",
+        "iam:ListAttachedRolePolicies",
+        "iam:ListInstanceProfilesForRole",
+        "iam:AttachRolePolicy",
+        "iam:DetachRolePolicy",
+        "iam:PassRole",
+        "iam:CreateInstanceProfile",
+        "iam:DeleteInstanceProfile",
+        "iam:GetInstanceProfile",
+        "iam:TagInstanceProfile",
+        "iam:AddRoleToInstanceProfile",
+        "iam:RemoveRoleFromInstanceProfile"
+      ],
+      "Resource": [
+        "arn:aws:iam::*:role/rm-*",
+        "arn:aws:iam::*:instance-profile/rm-*"
+      ]
+    },
+    {
+      "Sid": "LinkedRolesQueCreaAws",
+      "Effect": "Allow",
+      "Action": "iam:CreateServiceLinkedRole",
+      "Resource": "*"
+    },
+    {
+      "Sid": "Identidad",
+      "Effect": "Allow",
+      "Action": "sts:GetCallerIdentity",
+      "Resource": "*"
+    }
+  ]
+}
