@@ -28,8 +28,8 @@ Hay dos cosas de AWS que no se pueden mover de sitio: el WAF de CloudFront siemp
 
 ## Qué necesitas
 
-- AWS CLI configurada y funcionando (se comprueba con `aws sts get-caller-identity`), con permisos de administrador.
-- Terraform 1.10 o más nuevo.
+- AWS CLI configurada y funcionando, con permisos de administrador.
+- Terraform.
 
 ## Cómo desplegar la arquitectura A
 
